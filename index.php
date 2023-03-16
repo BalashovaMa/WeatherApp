@@ -1,3 +1,12 @@
+<?php 
+    if(isset($_GET['city'])) {
+        $urlContent = file_get_contents('https://api.openweathermap.org/data/2.5/weather?q=London&appid=24079dfe2fa15a31fd23b31138cb89f7');
+        $forcastArray = json_decode($urlContent, true);
+        print_r($forcastArray);
+       
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
