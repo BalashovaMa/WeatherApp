@@ -12,8 +12,14 @@ if (isset($_GET['city'])) {
 
     $forcastArray = json_decode($urlContent, true);
 
-    $weather = 'The weather in ' . $_GET['city'] . ' is ' . $forcastArray['weather'][0]['description'];
-    $weather = $weather.'. The temperature is '.$forcastArray['main']['temp'];
+    if ($forcastArray['cod'] == 200) {
+        $weather = 'The weather in ' . $_GET['city'] . ' is ' . $forcastArray['weather'][0]['description'];
+        $weather = $weather . '. The temperature is ' . $forcastArray['main']['temp'] . '&#8451;' . '. The speed of wind is ' . $forcastArray['wind']['speed'] . ' m/sec';
+    } else {
+        $error = 'The city name is incorrect, please try another name';
+    }
+
+
 
 
 
@@ -28,11 +34,11 @@ if (isset($_GET['city'])) {
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
+    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -78,8 +84,7 @@ if (isset($_GET['city'])) {
 
     </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
